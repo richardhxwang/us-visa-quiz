@@ -16,20 +16,20 @@ button{width:100%;cursor:pointer;padding:14px;font-size:17px;border:0;border-rad
 button:disabled{opacity:.4}.qc{min-height:0}label.opt{padding:9px 12px;margin:6px 0}@media(max-height:760px){header{padding:14px 18px}header div div{display:none}label.opt{padding:7px 10px;font-size:14px}}
 </style></head><body>
 <header><div class="wrap"><h1>🇺🇸 美国B1/B2旅游/商务签证 成功率自测</h1><div>依据INA 214(b)/212(a)、9 FAM 402.2、2025–26年政策及社区面签经验设计，按你的情况自动分支，约35–60题，约8分钟</div></div></header>
-<div class="wrap"><div id="intro" class="card" style="text-align:center;padding:28px 18px"><div style="font-size:44px">🛂</div><h2 style="margin:6px 0">测一测你的美签通过率</h2><p style="color:#555;font-size:15px;text-align:left">题目会<b>根据你的身份自动分支</b>（香港 / 内地 / 第三国；受雇 / 自雇 / 学生 / 退休 等），只问与你相关的问题，包括你能提供哪些书面材料。<br>答完会给出 <b>预估通过率</b>、<b>各维度评分</b> 和 <b>逐条提升建议</b>，约 8 分钟。</p><button id="startb">开始测试</button><div style="margin-top:10px;font-size:12px;color:#999">版本 v8 · 2026-10-15</div></div><div id="quiz" style="display:none"><div class="prog"><span id="pt">已答 0</span><div class="bar"><i id="pb" style="width:0;background:var(--p)"></i></div></div>
+<div class="wrap"><div id="intro" class="card" style="text-align:center;padding:28px 18px"><div style="font-size:44px">🛂</div><h2 style="margin:6px 0">测一测你的美签通过率</h2><p style="color:#555;font-size:15px;text-align:left">题目会<b>根据你的身份自动分支</b>（香港 / 内地 / 第三国；受雇 / 自雇 / 学生 / 退休 等），只问与你相关的问题，包括你能提供哪些书面材料。<br>答完会给出 <b>预估通过率</b>、<b>各维度评分</b> 和 <b>逐条提升建议</b>，约 8 分钟。</p><button id="startb">开始测试</button><div style="margin-top:10px;font-size:12px;color:#999">版本 v9 · 2026-10-16</div></div><div id="quiz" style="display:none"><div class="prog"><span id="pt">已答 0</span><div class="bar"><i id="pb" style="width:0;background:var(--p)"></i></div></div>
 <div id="qs"></div><div id="nav" style="display:flex;gap:10px"><button id="prev" style="background:#dee2e6;color:#333">上一题</button><button id="nextb">下一题</button><button id="go" style="display:none">查看我的评估结果</button></div></div><div id="res"></div>
 <div class="card introonly"><b>免责声明</b><br><small>本测试仅为基于公开信息与社区经验的粗略估算，不代表任何官方结论；签证官对每个案件独立整体判断（INA 214(b)），结果可能与估算相差很大。请务必如实填写DS-160，任何虚假陈述可能导致终身不予入境。</small></div>
 <div class="card introonly"><b>官方来源</b><small><br>
 <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html">Visitor Visa (travel.state.gov)</a><br>
 <a href="https://fam.state.gov/fam/09FAM/09FAM040202.html">9 FAM 402.2 访客签证</a><br>
 <a href="https://www.law.cornell.edu/uscode/text/8/1182">INA 212(a) 不予入境事由</a> · <a href="https://www.law.cornell.edu/uscode/text/8/1184">INA 214(b)</a><br>
-<a href="https://travel.state.gov/content/travel/en/News/visas-news/interview-waiver-update-sept-18-2025.html">面签豁免新规 2025-09-18</a><br>
+<a href="https://travel.state.gov/content/travel/en/News/visas-news/interview-waiver-update-sept-18-2025.html">面签豁免新规（2025-09-18公布，10-01生效）</a><br>
 <a href="https://travel.state.gov/content/travel/en/News/visas-news/adjudicating-niv-applicants-in-their-country-of-residence.html">须在国籍/居住国递签 2025-09-06</a><br>
 <a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics/nonimmigrant-visa-statistics/nonimmigrant-b-visa-adjusted-refusal-rates-by-nationality.html">B签调整后拒签率（中国FY25 20.21%）</a><br>
 <a href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/administrative-processing-information.html">221(g) 行政审查</a><br>
 <a href="https://china.usembassy-china.org.cn/zh/visas-zh/">美国驻华使领馆签证</a> · <a href="https://hk.usconsulate.gov/visas/">美国驻香港总领事馆</a><br><a href="https://travel.state.gov/content/travel/en/us-visas/Visa-Reciprocity-and-Civil-Documents-by-Country/HongKong.html">香港互惠表（HKSAR护照B签10年）</a> · <a href="https://www.cbp.gov/travel/international-visitors/electronic-visa-update-system-evus/frequently-asked-questions">EVUS（中国护照）</a></small></div></div>
 <script>
-// v8 题库（multi:1 为多选题：it=[文本,分值,缺少时建议,显示条件]）。选项: [文本, 分数0-10|null|函数, 建议|函数, 封顶%, 键, logit扣分]
+// v9 题库（multi:1 为多选题：it=[文本,分值,缺少时建议,显示条件]）。选项: [文本, 分数0-10|null|函数, 建议|函数, 封顶%, 键, logit扣分]
 // 题目 w: 权重（默认1；核心3；0=合规类，不进均值，只封顶/扣分）；fixed: 无法改变的因素
 const N=null;let A={};
 const k=id=>{const q=QM[id];if(!q||A[id]==null)return undefined;if(q.multi)return A[id].length?'some':'none';return q.o[A[id]][4]||String(A[id])};
@@ -543,7 +543,7 @@ const Q=[
 ['我居住的第三国',N,'带居留卡和住址证明。',N,'third'],
 ['某地，只因为排期快（我不住在那里）',N,'违反2025-09的规定，很可能被拒，费用不退。',30,'nonres']]},
 {id:'renew',c:'递签地点',w:0,t:'你是否符合免面谈续签（代递）条件？',when:()=>k('usvisa')=='hadb'&&CLEAN()&&k('loc')!='nonres'&&!M(),o:[
-['符合：上一张B签为全有效期、过期不满12个月、签发时已满18岁，并在国籍国或居住国递签',N,'可能免面谈；签证官仍可以要求面谈。'],
+['符合：上一张B签为全有效期、过期不满12个月、签发时已满18岁、从未被拒签且无不予入境事由，并在国籍国或居住国递签',N,'可能免面谈；签证官仍可以要求面谈。'],
 ['上一张B签过期已超过12个月，需要面谈',N,'旧签证记录仍然是加分项。'],['上一张不是全有效期签证，需要面谈',N,'—']]},
 {id:'fees',c:'递签地点',w:0,t:'是否了解最新的费用和流程？',o:[
 ['知道签证费185美元＋签发时约250美元签证诚信费，并预留排期',N,'—'],['只知道签证费',N,'签证诚信费（8 U.S.C. §1806）在签发时收取，以领馆通知为准。'],['不了解，打算临出发前才办',N,'至少提前2–3个月准备，排期和行政审查都需要时间。']]},
@@ -576,7 +576,7 @@ function consist(){const w=[],info=[];let cap=100,adj=0;const r=R(),rr=RES(),l=k
  if(k('overstay')=='us'&&String(k('usvisa')).startsWith('had')&&QM.usvisa.o[A.usvisa][0].includes('按时'))w.push('你选了“按时离境”，但又有在美超期记录，两者矛盾，请核对。');
  if(k('ds160')=='agent'&&k('misrep')=='ok')w.push('中介代填的表格可能含有不实信息，你确认过吗？');
  {let pt=0;for(const id in A){const o=OP(id);if(/ptn/.test(o[4]||''))pt++}if(pt&&!PT()&&k('marital')!='married')w.push('你选了与伴侣相关的住址、房产或资金选项，但感情状况没选“有伴侣”：请核对，答案前后应一致（DS-160也是如此）。')}
- {const h=k('hk_house')||k('cn_house'),d=HK()?'hk_adoc':'cn_adoc';if(h&&!['own','joint_sp','joint_ptn','rent_self','rent_joint','ph_member'].includes(h)&&A[d]){const n=A[d].length;if(n<2){adj-=n?0.2:0.4};if(n<2)w.push('住房不在你名下，而写你名字、寄到该地址的文件少于2份：签证官可能质疑你是否真的住在当地。递签前3个月起，让银行月结单、账单改寄到这个地址。');}}
+ {const h=k('hk_house')||k('cn_house'),d=HK()?'hk_adoc':'cn_adoc';if(h&&!['own','joint_sp','joint_ptn','rent_self','rent_joint','ph_member'].includes(h)&&A[d]){const n=A[d].length;if(n<2){adj-=n?0.2:0.4};if(n===0)cap=Math.min(cap,70);if(n<2)w.push('住房不在你名下，而写你名字、寄到该地址的文件少于2份：签证官可能质疑你是否真的住在当地。递签前3个月起，让银行月结单、账单改寄到这个地址。');}}
  if(k('cn_ctax')=='cash'&&k('sav_cn')=='0')info.push('存款与纳税差距大：准备经营流水来解释资金来源。');
  // 组合风险
  const young=['y1','y2'].includes(k('age')),alone=['single','partner'].includes(k('marital')),white=k('travel')=='white';
