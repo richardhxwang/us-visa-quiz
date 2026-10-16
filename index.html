@@ -13,21 +13,22 @@ button{width:100%;cursor:pointer;padding:14px;font-size:17px;border:0;border-rad
 .prog{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;font-size:13px}
 .big{font-size:54px;font-weight:800;text-align:center}.tip{font-size:14px;border-left:4px solid var(--o);padding:6px 10px;margin:8px 0;background:#fff9db;border-radius:6px}
 .good{border-left-color:var(--g);background:#ebfbee}.bad{border-left-color:var(--r);background:#fff5f5}small{color:#666}a{color:var(--p);word-break:break-all}
-button:disabled{opacity:.4}.qc{min-height:0}label.opt{padding:9px 12px;margin:6px 0}@media(max-height:760px){header{padding:14px 18px}header div div{display:none}label.opt{padding:7px 10px;font-size:14px}}
+button:disabled{opacity:.4}.qc{min-height:0}
+/* v9 一屏一题：答题时隐藏页头；选项字号/间距随 --fs 自动缩放，保证不滚动 */
+body.quizmode header{display:none}body.quizmode .wrap{padding:8px 12px}
+#quiz{--fs:15px}#quiz .card{margin:8px 0;padding:12px 14px}#quiz .q{font-size:calc(var(--fs) + 1px);line-height:1.4;margin:2px 0 6px}
+#quiz label.opt{font-size:var(--fs);line-height:1.35;padding:calc(var(--fs)*.5) 10px;margin:calc(var(--fs)*.3) 0}
+#quiz .grid2{display:grid;grid-template-columns:1fr 1fr;column-gap:6px}#quiz .grid2 label.opt{margin:3px 0}#quiz .grid2>div{grid-column:1/-1}
+#nav button{padding:11px;font-size:16px}.prog{padding:4px 0}
+header{padding:16px 18px}header h1{font-size:19px}header .sub{font-size:13px;line-height:1.45}
+#intro{padding:14px 16px!important;margin:10px 0}#intro p{font-size:14px;margin:6px 0 10px}#intro h2{font-size:19px}
+.introonly{margin:8px 0;padding:10px 12px;font-size:12px;line-height:1.45}.introonly small{font-size:11.5px}.introonly a{word-break:normal}
 </style></head><body>
-<header><div class="wrap"><h1>🇺🇸 美国B1/B2旅游/商务签证 成功率自测</h1><div>依据INA 214(b)/212(a)、9 FAM 402.2、2025–26年政策及社区面签经验设计，按你的情况自动分支，约35–60题，约8分钟</div></div></header>
-<div class="wrap"><div id="intro" class="card" style="text-align:center;padding:28px 18px"><div style="font-size:44px">🛂</div><h2 style="margin:6px 0">测一测你的美签通过率</h2><p style="color:#555;font-size:15px;text-align:left">题目会<b>根据你的身份自动分支</b>（香港 / 内地 / 第三国；受雇 / 自雇 / 学生 / 退休 等），只问与你相关的问题，包括你能提供哪些书面材料。<br>答完会给出 <b>预估通过率</b>、<b>各维度评分</b> 和 <b>逐条提升建议</b>，约 8 分钟。</p><button id="startb">开始测试</button><div style="margin-top:10px;font-size:12px;color:#999">版本 v9 · 2026-10-16</div></div><div id="quiz" style="display:none"><div class="prog"><span id="pt">已答 0</span><div class="bar"><i id="pb" style="width:0;background:var(--p)"></i></div></div>
+<header><div class="wrap"><h1>🇺🇸 美国B1/B2旅游/商务签证 成功率自测</h1><div class="sub">依据INA 214(b)/212(a)、9 FAM 402.2、2025–26年政策及社区面签经验设计</div></div></header>
+<div class="wrap"><div id="intro" class="card" style="text-align:center;padding:28px 18px"><div style="font-size:30px;line-height:1">🛂</div><h2 style="margin:4px 0">测一测你的美签通过率</h2><p style="color:#555;text-align:left">题目<b>按你的身份自动分支</b>（香港 / 内地 / 第三国；受雇 / 自雇 / 学生 / 退休等），只问与你相关的问题。答完给出<b>预估通过率</b>、<b>各维度评分</b>和<b>逐条提升建议</b>。约35–60题，8分钟。</p><button id="startb">开始测试</button><div style="margin-top:6px;font-size:12px;color:#999">版本 v9 · 2026-10-16</div></div><div id="quiz" style="display:none"><div class="prog"><span id="pt">已答 0</span><div class="bar"><i id="pb" style="width:0;background:var(--p)"></i></div></div>
 <div id="qs"></div><div id="nav" style="display:flex;gap:10px"><button id="prev" style="background:#dee2e6;color:#333">上一题</button><button id="nextb">下一题</button><button id="go" style="display:none">查看我的评估结果</button></div></div><div id="res"></div>
 <div class="card introonly"><b>免责声明</b><br><small>本测试仅为基于公开信息与社区经验的粗略估算，不代表任何官方结论；签证官对每个案件独立整体判断（INA 214(b)），结果可能与估算相差很大。请务必如实填写DS-160，任何虚假陈述可能导致终身不予入境。</small></div>
-<div class="card introonly"><b>官方来源</b><small><br>
-<a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html">Visitor Visa (travel.state.gov)</a><br>
-<a href="https://fam.state.gov/fam/09FAM/09FAM040202.html">9 FAM 402.2 访客签证</a><br>
-<a href="https://www.law.cornell.edu/uscode/text/8/1182">INA 212(a) 不予入境事由</a> · <a href="https://www.law.cornell.edu/uscode/text/8/1184">INA 214(b)</a><br>
-<a href="https://travel.state.gov/content/travel/en/News/visas-news/interview-waiver-update-sept-18-2025.html">面签豁免新规（2025-09-18公布，10-01生效）</a><br>
-<a href="https://travel.state.gov/content/travel/en/News/visas-news/adjudicating-niv-applicants-in-their-country-of-residence.html">须在国籍/居住国递签 2025-09-06</a><br>
-<a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics/nonimmigrant-visa-statistics/nonimmigrant-b-visa-adjusted-refusal-rates-by-nationality.html">B签调整后拒签率（中国FY25 20.21%）</a><br>
-<a href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/administrative-processing-information.html">221(g) 行政审查</a><br>
-<a href="https://china.usembassy-china.org.cn/zh/visas-zh/">美国驻华使领馆签证</a> · <a href="https://hk.usconsulate.gov/visas/">美国驻香港总领事馆</a><br><a href="https://travel.state.gov/content/travel/en/us-visas/Visa-Reciprocity-and-Civil-Documents-by-Country/HongKong.html">香港互惠表（HKSAR护照B签10年）</a> · <a href="https://www.cbp.gov/travel/international-visitors/electronic-visa-update-system-evus/frequently-asked-questions">EVUS（中国护照）</a></small></div></div>
+<div class="card introonly"><b>官方来源</b><small>  · <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html">Visitor Visa (travel.state.gov)</a> · <a href="https://fam.state.gov/fam/09FAM/09FAM040202.html">9 FAM 402.2 访客签证</a> · <a href="https://www.law.cornell.edu/uscode/text/8/1182">INA 212(a) 不予入境事由</a> · <a href="https://www.law.cornell.edu/uscode/text/8/1184">INA 214(b)</a> · <a href="https://travel.state.gov/content/travel/en/News/visas-news/interview-waiver-update-sept-18-2025.html">面签豁免新规（2025-09-18公布，10-01生效）</a> · <a href="https://travel.state.gov/content/travel/en/News/visas-news/adjudicating-niv-applicants-in-their-country-of-residence.html">须在国籍/居住国递签 2025-09-06</a> · <a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics/nonimmigrant-visa-statistics/nonimmigrant-b-visa-adjusted-refusal-rates-by-nationality.html">B签调整后拒签率（中国FY25 20.21%）</a> · <a href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/administrative-processing-information.html">221(g) 行政审查</a> · <a href="https://china.usembassy-china.org.cn/zh/visas-zh/">美国驻华使领馆签证</a> · <a href="https://hk.usconsulate.gov/visas/">美国驻香港总领事馆</a>  · <a href="https://travel.state.gov/content/travel/en/us-visas/Visa-Reciprocity-and-Civil-Documents-by-Country/HongKong.html">香港互惠表（HKSAR护照B签10年）</a> · <a href="https://www.cbp.gov/travel/international-visitors/electronic-visa-update-system-evus/frequently-asked-questions">EVUS（中国护照）</a></small></div></div>
 <script>
 // v9 题库（multi:1 为多选题：it=[文本,分值,缺少时建议,显示条件]）。选项: [文本, 分数0-10|null|函数, 建议|函数, 封顶%, 键, logit扣分]
 // 题目 w: 权重（默认1；核心3；0=合规类，不进均值，只封顶/扣分）；fixed: 无法改变的因素
@@ -64,7 +65,7 @@ const Q=[
 ['中国（PRC）护照，在新加坡或其他第三国居住',N,'带当地居留卡。',N,'prc_t3'],
 ['BNO护照或香港签证身份书（DI）',N,'DI过期后不享受自动延期：有效期应覆盖行程结束后至少6个月。',N,'bno'],
 ['澳门特区护照',N,'在香港总领事馆（港澳领区）递签。',N,'macau'],
-['其他国家/地区护照',N,'按国籍国或居住国递签。',N,'other']]},
+['其他国家/地区护照',N,'按国籍国或居住国递签；部分国籍受2026年1月生效的第10998号总统公告入境限制，递签前先在travel.state.gov核对。',N,'other']]},
 {id:'res',c:'身份/居留',w:2,t:'你现在一年中大部分时间住在哪里？',o:[
 ['香港（或澳门）',9,'以香港作为居住地递签时，需要能证明你住在香港。',N,'hk'],
 ['香港工作，每周回内地（深港两地）',8,'工作日住所在香港就按香港作答；两地都可以递签，在哪里递签，就把那边的约束材料带齐。',N,'hk'],
@@ -277,7 +278,7 @@ const Q=[
 ['有合伙人或员工负责日常运营',8,'面谈时一句话说明即可。'],['我不在公司就停摆',6,'说明行程短，回港后有已排期的订单或合同。']]},
 // CN 受雇
 {id:'cn_emptype',c:'工作与收入',w:2,t:'你在内地的单位类型？',when:()=>CN()&&O()=='emp',o:[
-['党政机关/事业单位/央国企',9,'带在职证明和准假证明（审批题在后面）。'],['上市公司/知名大厂',9,'带中英文在职证明（含HR座机号）。'],['外企/合资企业',9,'带英文在职证明。'],
+['党政机关/事业单位',9,'带在职证明和准假证明（因私出境审批题在后面）。'],['央企/国企',9,'带中英文在职证明（盖章，留HR座机）和准假证明。'],['上市公司/知名大厂',9,'带中英文在职证明（含HR座机号）。'],['外企/合资企业',9,'带英文在职证明。'],
 ['民营中小企业',7,'在职证明加营业执照副本复印件（盖章）。'],['初创公司（成立不到3年或在融资阶段）',6,'在职证明＋营业执照副本复印件（盖章）＋企查查或天眼查公司信息截图；有融资新闻或官网的可附上。'],
 ['港澳台或海外公司驻内地机构',8,'带在职证明和代表处登记证。']]},
 {id:'cn_level',c:'工作与收入',t:'职位级别？',when:()=>CN()&&O()=='emp',o:[
@@ -390,11 +391,11 @@ const Q=[
 {id:'sav_usd',c:'资产财力',w:2,t:'可动用的存款（折合美元）？',when:()=>!M()&&T3(),o:[['≥US$50,000',9,'—'],['US$15,000–50,000',8,'—'],['US$5,000–15,000',6,'—'],['低于US$5,000',4,'由资助人出具证明。']]},
 {id:'bank',c:'资产财力',w:.6,t:'你的主要银行账户/资产在哪里？',when:()=>!M(),o:[
 ['在常住地',9,'带近6个月的月结单或流水。'],['在家乡/国籍地',8,'—'],['常住地和家乡都有',9,'—'],
-['主要在美国',3,'说明资金来源，并展示在居住地的账户。',N,'us_tie'],['没有明显的存款或资产',4,'由资助人出具证明。']]},
-{id:'bank_name',c:'资产财力',w:.4,t:'这些账户在谁名下？',when:()=>!M()&&k('bank')!='4',o:[
+['主要在美国',3,'说明资金来源，并展示在居住地的账户。',N,'us_tie'],['没有明显的存款或资产',4,'由资助人出具证明。',N,'none']]},
+{id:'bank_name',c:'资产财力',w:.4,t:'这些账户在谁名下？',when:()=>!M()&&k('bank')!='none',o:[
 ['本人名下',9,'—'],['与配偶联名',8,'带月结单（显示双方姓名）和结婚证。'],
 ['与未婚伴侣联名',7,'联名账户可以用；最好同时有一个本人名下的账户，显示个人收入入账。',N,'ptn'],['主要在配偶或家人名下',6,'带关系证明，并开一个本人名下的账户，显示收入入账。']]},
-{id:'asset_docs',c:'资产财力',multi:1,w:.5,need:5,t:'你能提供哪些资产证明？（可多选）',when:()=>!M()&&k('bank')!='4',it:[
+{id:'asset_docs',c:'资产财力',multi:1,w:.5,need:5,t:'你能提供哪些资产证明？（可多选）',when:()=>!M()&&k('bank')!='none',it:[
 ['近6个月银行月结单/流水',2,'打印近6个月的月结单或流水。'],['存款证明',1.5,'到银行开存款证明（冻结期覆盖行程即可）。'],['定期存款/理财/基金/股票结单',1,'带理财或证券账户结单。'],['保险保单（储蓄型）',.5,'—'],['车辆登记文件',.5,'—']]},
 {id:'fund_src',c:'资产财力',t:'这些资金的来源是否清楚？',when:()=>!M(),o:[
 ['长期工资或经营积累',9,'—'],['经营现金陆续存入，有进出货记录可以对应',6,'准备经营流水解释。'],
@@ -428,7 +429,7 @@ const Q=[
 ['与我同行',7,'带出生证明或户口本、孩子的在读证明；14岁以下也要面签（随父母同场）。'],
 ['在美国读书（F-1）',7,'带子女的I-20。'],['在美国长期居住（绿卡/公民）',3,'如实填写；说明你只是短期探望。',N,'us_tie']]},
 {id:'parents',c:'家庭与约束',t:'父母在哪里？',when:()=>!M(),o:[
-['与我同在常住地',8,'—'],['在内地/家乡（我住香港或第三国）',8,'父母在家乡同样是约束，不是不利因素。'],['在第三国（非美国）',7,'—'],
+['与我同在常住地',8,'—'],['在内地或家乡（与我不同城）',8,'父母在家乡同样是约束，不是不利因素。'],['在第三国（非美国）',7,'—'],
 ['在美国（绿卡/公民）',4,'如实填写DS-160；准备好你本人的约束证据和具体行程时长。',N,'us_tie'],['已故/不适用',N,'—']]},
 {id:'us_rel',c:'家庭与约束',t:'除配偶、子女、父母外，其他亲属（兄弟姐妹等）在美国的情况？',o:[
 ['没有',8,'—'],['在美读书（F-1）',7,'如实填写。'],['兄弟姐妹在美工作（H-1B/L-1等非移民身份）',6,'如实填写；说明你只是短期探望。'],
@@ -438,7 +439,7 @@ const Q=[
 ['有，已获批或正在排期',1,'待决的移民申请不会自动导致拒签，但你必须证明这次只是短期探亲、会按时离境：带退休证或在职证明、房产证明和回程机票；有其他子女在国内的，一并提及。',30],
 ['曾递交，但已撤回或作废',5,'带撤回或作废的证明。',60]]},
 {id:'duty',c:'家庭与约束',t:'你在居住地或家乡有需要承担的责任吗？',when:()=>!M(),o:[
-['有：照顾老人或孩子、经营公司、管理物业等',8,'一句话说明即可。'],['在当地定期覆诊、有物业要打理，或有社区活动',7,'—'],
+['有：照顾家中老人或孩子',8,'一句话说明即可，例如“父亲需要我每周陪诊”。'],['有：经营公司或管理出租物业',8,'带公司或物业的证明，说明回去后要处理的事务。'],['在当地定期覆诊、有物业要打理，或有社区活动',7,'—'],
 ['学业未完成，行程后要回校',7,'—'],['与父母同住并分担家用',6,'—'],['没有明显牵挂',4,'从工作、房产方面补强。']]},
 // ===== 记录
 {id:'travel',c:'出行记录',w:3,t:'过去5年出境记录（不计港澳与内地之间往返）？',o:[
@@ -483,7 +484,7 @@ const Q=[
 ['否',N,'—',N,'no'],['曾在相关院校读本科',N,'预留更长时间；DS-5535（补充问卷）要求15年的行程、住址、工作和护照记录，提前整理。',N,'y'],
 ['导师或实验室有军工或实体清单单位的合作项目',N,'如实说明，并准备项目说明。',N,'y'],
 ['目前在相关院校读研或在该类单位任职',N,'预留半年以上，并确认是否需要因公审批。',N,'y']]},
-{id:'gov',c:'专业审查',w:0,t:'是否需要单位审批因私出境，或从事涉密/军队工作？',when:()=>!M(),o:[
+{id:'gov',c:'专业审查',w:0,t:'是否需要单位审批因私出境，或从事涉密/军队工作？',when:()=>!M()&&CN(),o:[
 ['否 / 不适用',N,'—',N,'no'],['央国企/事业单位/公务员，需单位审批因私出境（护照由单位保管）',N,'先走单位的因私出国审批并领取护照；在职证明注明“同意因私出境，按期返岗”。',N,'appr'],
 ['军队/涉密岗位',3,'先确认是否可以因私出境；可能面临额外审查。',N,'mil',-0.6]]},
 // ===== 行程
@@ -523,7 +524,7 @@ const Q=[
 ['配偶和子女一起（全家同行，有出行记录）',7,'强调工作、房产和孩子的学籍（附在读证明）；一起面签，DS-160互列同行人。',N,'sp_kids'],
 ['与子女同行（配偶留在居住地）',8,'配偶留在家是约束。',N,'kids'],['与父母或祖父母同行',8,'长辈的材料单独准备。',N,'par'],
 ['与男朋友/女朋友（未婚伴侣）同行',7,'双方的说法要一致。',N,'gf'],['与朋友同行',7,'各自准备材料，行程要说得一致。',N,'fr'],
-['与同事/旅行团',8,'同事各自带派遣函，DS-160里互相列为同行人；跟团的带确认单。',N,'grp'],
+['与同事（公务或商务出行）',8,'同事各自带派遣函，DS-160里互相列为同行人。',N,'grp'],['跟旅行团',8,'带旅行社的报名确认单和行程单；DS-160“同行团体”填旅行团名称。',N,'grp'],
 ['全家都去，且都没有出行记录',4,'先全家去日本或新加坡积累记录，或分批申请。',N,'fam0']]},
 {id:'gf_ties',c:'行程目的',t:'同行伴侣的情况？',when:()=>k('comp')=='gf'&&!PT(),o:[
 ['有稳定工作和住所',8,'—'],['学生，或刚工作不久',6,'—'],['约束较弱（无业、白本）',3,'考虑分开申请，或让伴侣先积累出行记录。'],['已在美国生活',2,'如实说明。',N,'us_tie']]},
@@ -546,7 +547,7 @@ const Q=[
 ['符合：上一张B签为全有效期、过期不满12个月、签发时已满18岁、从未被拒签且无不予入境事由，并在国籍国或居住国递签',N,'可能免面谈；签证官仍可以要求面谈。'],
 ['上一张B签过期已超过12个月，需要面谈',N,'旧签证记录仍然是加分项。'],['上一张不是全有效期签证，需要面谈',N,'—']]},
 {id:'fees',c:'递签地点',w:0,t:'是否了解最新的费用和流程？',o:[
-['知道签证费185美元＋签发时约250美元签证诚信费，并预留排期',N,'—'],['只知道签证费',N,'签证诚信费（8 U.S.C. §1806）在签发时收取，以领馆通知为准。'],['不了解，打算临出发前才办',N,'至少提前2–3个月准备，排期和行政审查都需要时间。']]},
+['知道签证费185美元，并预留排期和可能的行政审查时间',N,'签证诚信费（250美元，8 U.S.C. §1806）已立法，但截至2026-10尚未开始收取；以领馆缴费页面为准。'],['只知道签证费，不清楚排期和后续步骤',N,'查好所选领馆的预约排期；获签后中国护照还要登记EVUS（30美元）。'],['不了解，打算临出发前才办',N,'至少提前2–3个月准备，排期和行政审查都需要时间。']]},
 // ===== 面签准备（只扣分）
 {id:'ds160',c:'面签准备',w:0,t:'DS-160填写情况？',o:[
 ['自己逐项如实填写并核对过',N,'—',N,'ok'],['中介代填，我没仔细看',3,'逐项核对：工作、收入、在美亲属、社媒账号、拒签史、同行人。',N,'agent',-0.5],['有部分不确定',4,'更正后重新提交，并更新预约的条形码。',N,N,-0.3]]},
@@ -558,8 +559,20 @@ const Q=[
 ['没准备',3,'模拟10个常见问题：去做什么、去多久、和谁去、做什么工作、收入多少、去过哪里、在美亲友、谁付钱、拒签史、何时回来。',N,N,-0.3]]},
 {id:'carry',c:'面签准备',w:0,t:'辅助材料怎么准备？',o:[['按“身份-工作-资产-家庭-行程”分类整理',N,'—'],['只带护照和确认页',5,'至少补带在职证明和旧护照。',N,N,-0.15],['带了一大堆，很乱',N,'分文件袋整理。']]}
 ];
+// 选项级显示条件（o[6]）：与身份无关的选项不显示
+const MAR=()=>k('marital')=='married',KID=()=>k('kids')=='y';
+[['hk_house','与配偶联名',MAR],['hk_house','配偶名下',MAR],['hk_house','租约在配偶',MAR],['hk_house','与未婚伴侣联名',PT],['hk_house','未婚伴侣名下',PT],['hk_house','租约在未婚伴侣',PT],
+ ['cn_house','与配偶共有',MAR],['cn_house','配偶名下',MAR],['cn_house','租房合同在配偶',MAR],['cn_house','与未婚伴侣共有',PT],['cn_house','未婚伴侣名下',PT],['cn_house','租房合同在未婚伴侣',PT],
+ ['prop','自己没有房，住配偶',MAR],['prop','自己没有房，住未婚伴侣',PT],['prop_own','与配偶联名',MAR],['prop_own','与未婚伴侣联名',PT],
+ ['bank_name','与配偶联名',MAR],['bank_name','与未婚伴侣联名',PT],['payer','配偶',MAR],['payer','男女朋友',PT],
+ ['sp_doc','配偶持香港非永久',HK],['pt_loc','在内地或家乡',()=>!CN()],
+ ['comp','独自出行，配偶或伴侣',()=>MAR()||PT()],['comp','独自出行（没有',()=>!MAR()&&!PT()],['comp','与配偶同行，子女',()=>MAR()&&KID()],['comp','与配偶同行',MAR],
+ ['comp','配偶和子女',()=>MAR()&&KID()],['comp','与子女同行',KID],['comp','与男朋友',()=>!MAR()],['comp','全家都去',()=>MAR()||KID()]
+].forEach(([id,pre,f])=>{const q=Q.find(x=>x.id==id);const os=q.o.filter(o=>o[0].startsWith(pre)&&!o[6]);if(!os.length)throw id+pre;os[0].length=Math.max(os[0].length,6);os[0][6]=f});
+const OV=o=>!o[6]||o[6]();
+['marital','age'].forEach(id=>{const i=Q.findIndex(q=>q.id==id),q=Q.splice(i,1)[0];Q.splice(Q.findIndex(x=>x.id=='res')+1,0,q)});
 const QM={};Q.forEach(q=>QM[q.id]=q);
-function path(){let changed=true,p;while(changed){changed=false;p=Q.filter(q=>!q.when||q.when());const ids=new Set(p.map(q=>q.id));for(const id in A)if(!ids.has(id)){delete A[id];changed=true}}p.forEach(q=>{if(q.multi&&Array.isArray(A[q.id])){const v=VIS(q);A[q.id]=A[q.id].filter(i=>v.includes(i))}});return p}
+function path(){let changed=true,p;while(changed){changed=false;p=Q.filter(q=>!q.when||q.when());const ids=new Set(p.map(q=>q.id));for(const id in A)if(!ids.has(id)||(!QM[id].multi&&!OV(QM[id].o[A[id]]))){delete A[id];changed=true}}p.forEach(q=>{if(q.multi&&Array.isArray(A[q.id])){const v=VIS(q);A[q.id]=A[q.id].filter(i=>v.includes(i))}});return p}
 const lg=p=>Math.log(p/(1-p)),ex=x=>1/(1+Math.exp(-x));
 function base(){const p=PP();if(p=='hksar')return{b:.92,ref:9.2,lab:'香港特区（拒签率7.7%）'};if(p=='bno'||p=='macau')return{b:.90,ref:9.1,lab:'香港/澳门（约90%）'};
  if(p=='other')return{b:.82,ref:9.2,lab:'其他国籍（按国籍差异很大）'};return{b:.80,ref:9.2,lab:'中国护照（拒签率20.2%）'}}
@@ -576,7 +589,10 @@ function consist(){const w=[],info=[];let cap=100,adj=0;const r=R(),rr=RES(),l=k
  if(k('overstay')=='us'&&String(k('usvisa')).startsWith('had')&&QM.usvisa.o[A.usvisa][0].includes('按时'))w.push('你选了“按时离境”，但又有在美超期记录，两者矛盾，请核对。');
  if(k('ds160')=='agent'&&k('misrep')=='ok')w.push('中介代填的表格可能含有不实信息，你确认过吗？');
  {let pt=0;for(const id in A){const o=OP(id);if(/ptn/.test(o[4]||''))pt++}if(pt&&!PT()&&k('marital')!='married')w.push('你选了与伴侣相关的住址、房产或资金选项，但感情状况没选“有伴侣”：请核对，答案前后应一致（DS-160也是如此）。')}
- {const h=k('hk_house')||k('cn_house'),d=HK()?'hk_adoc':'cn_adoc';if(h&&!['own','joint_sp','joint_ptn','rent_self','rent_joint','ph_member'].includes(h)&&A[d]){const n=A[d].length;if(n<2){adj-=n?0.2:0.4};if(n===0)cap=Math.min(cap,70);if(n<2)w.push('住房不在你名下，而写你名字、寄到该地址的文件少于2份：签证官可能质疑你是否真的住在当地。递签前3个月起，让银行月结单、账单改寄到这个地址。');}}
+ {const h=k('hk_house')||k('cn_house'),d=HK()?'hk_adoc':'cn_adoc';if(h&&!['own','joint_sp','joint_ptn','rent_self','rent_joint','ph_member'].includes(h)&&A[d]){const n=A[d].length;if(n<2){adj-=n?0.2:0.4};cap=Math.min(cap,n===0?70:n===1?82:100);if(n<2)w.push('住房不在你名下，而写你名字、寄到该地址的文件少于2份：签证官可能质疑你是否真的住在当地。递签前3个月起，让银行月结单、账单改寄到这个地址。');}}
+ if(A.renew===0)adj+=0.4;
+ if(k('kids_loc')&&QM.kids_loc.o[A.kids_loc][0]=='与我同行'&&A.comp!=null&&!['sp_kids','kids','fam0'].includes(k('comp')))w.push('子女题选了“与我同行”，同行人题却没有选带孩子：请核对，DS-160同行人要一致。');
+ if(k('sp_loc')=='us_tie'&&['sp','sp_kids'].includes(k('comp')))w.push('配偶长期在美国，却又选了“与配偶同行”：请核对。');
  if(k('cn_ctax')=='cash'&&k('sav_cn')=='0')info.push('存款与纳税差距大：准备经营流水来解释资金来源。');
  // 组合风险
  const young=['y1','y2'].includes(k('age')),alone=['single','partner'].includes(k('marital')),white=k('travel')=='white';
@@ -606,10 +622,15 @@ function render(){const p=path();if(cur>=p.length)cur=p.length-1;if(cur<0)cur=0;
  const done=p.filter(x=>A[x.id]!=null).length;
  document.getElementById('pt').textContent=`第 ${cur+1} 题 · 已答 ${done}/${p.length}（题数会随你的回答变化）`;document.getElementById('pb').style.width=done/p.length*100+'%';
  qs.innerHTML=`<div class="card qc"><div class="cat">${q.c}</div><div class="q">${val(q.t)}</div>`+(q.multi?`<div style="font-size:13px;color:#6c757d;margin:-4px 0 8px">可多选，选好后点“确定，下一题”</div>`+VIS(q).map(j=>`<label class="opt"><input type="checkbox" name="m" value="${j}" ${(A[q.id]||[]).includes(j)?'checked':''}>${q.it[j][0]}</label>`).join('')+`<label class="opt"><input type="checkbox" name="m" value="-1" ${Array.isArray(A[q.id])&&!A[q.id].length?'checked':''}>${q.none||'都没有'}</label>`
- :q.o.map((o,j)=>`<label class="opt"><input type="radio" name="r" value="${j}" ${A[q.id]===j?'checked':''}>${o[0]}</label>`).join(''))+`</div>`;
+ :q.o.map((o,j)=>OV(o)?`<label class="opt"><input type="radio" name="r" value="${j}" ${A[q.id]===j?'checked':''}>${o[0]}</label>`:'').join(''))+`</div>`;
  document.getElementById('prev').disabled=cur===0;const allDone=p.every(x=>A[x.id]!=null),last=cur===p.length-1;
  const nb=document.getElementById('nextb');nb.textContent=q.multi?'确定，下一题':'下一题';nb.style.display=last?'none':'block';document.getElementById('nextb').disabled=A[q.id]==null;
- go.style.display=(last||allDone)?'block':'none';go.disabled=!allDone}
+ go.style.display=(last||allDone)?'block':'none';go.disabled=!allDone;fit()}
+function fit(){const z=document.getElementById('quiz'),qc=qs.querySelector('.qc'),ls=[...qc.querySelectorAll('label.opt')];const over=()=>document.documentElement.scrollHeight>innerHeight+1;
+ z.style.setProperty('--fs','15px');qc.classList.remove('grid2');let f=15;
+ const g=ls.length>=8&&ls.every(l=>l.textContent.length<=16);if(g&&over())qc.classList.add('grid2');
+ while(over()&&f>11){f-=.5;z.style.setProperty('--fs',f+'px')}}
+addEventListener('resize',()=>{if(document.body.classList.contains('quizmode'))fit()});
 qs.addEventListener('change',e=>{const p=path(),q=p[cur];
  if(q.multi){const v=+e.target.value,bx=[...qs.querySelectorAll('input[name=m]')];
   if(e.target.checked){if(v===-1)bx.forEach(b=>{if(+b.value!==-1)b.checked=false});else bx.forEach(b=>{if(+b.value===-1)b.checked=false})}
@@ -618,7 +639,7 @@ qs.addEventListener('change',e=>{const p=path(),q=p[cur];
  A[q.id]=+e.target.value;const np=path();const i=np.findIndex(x=>A[x.id]==null);render();if(i>=0)setTimeout(()=>{cur=i;render()},250)});
 document.getElementById('prev').onclick=()=>{if(cur>0){cur--;render()}};
 document.getElementById('nextb').onclick=()=>{const p=path();if(A[p[cur].id]!=null&&cur<p.length-1){const i=p.findIndex((x,j)=>j>cur&&A[x.id]==null);cur=p[cur].multi&&i>=0?i:cur+1;render();window.scrollTo(0,0)}};
-document.getElementById('startb').onclick=()=>{document.getElementById('intro').style.display='none';document.getElementById('quiz').style.display='block';document.querySelectorAll('.introonly').forEach(e=>e.style.display='none');cur=0;render();window.scrollTo(0,0)};
+document.getElementById('startb').onclick=()=>{document.body.classList.add('quizmode');document.getElementById('intro').style.display='none';document.getElementById('quiz').style.display='block';document.querySelectorAll('.introonly').forEach(e=>e.style.display='none');cur=0;render();window.scrollTo(0,0)};
 function sample(){const pu=k('purpose'),c=k('comp'),o=O();let who={sp:'和太太（先生）',sp_kids:'和家人',kids:'和孩子',par:'和父母',gf:'和女朋友（男朋友）',fr:'和朋友',grp:'和同事',fam0:'和家人'}[c]||'';
  if(M())who={'父母双方同行':'和爸爸妈妈'}[QM.minor_comp.o[A.minor_comp]?.[0]]||'和家人';
  const pay=k('payer');const payt=pay=='parents'?'父母出钱':(QM.payer.o[A.payer]?.[0]||'').startsWith('本人与')?'费用各自承担':'费用自己承担';
@@ -639,10 +660,10 @@ go.onclick=()=>{const r=score();const un=path().filter(x=>A[x.id]==null);if(un.l
  if(fx.length)h+=`<div class="card"><b>ℹ️ 无法改变的因素（仅供了解）</b>`+fx.map(x=>`<div class="tip" style="border-left-color:#adb5bd;background:#f8f9fa">${x}</div>`).join('')+`</div>`;
  h+=`<div class="card"><b>保持你的优势</b>`+(r.strong.length?r.strong.map(s=>`<div class="tip good">✅ ${s}</div>`).join(''):'<p>—</p>')+`</div>`;
  const tips=[`用一句话回答目的，例如：${sample()}`,'回答必须与DS-160一致；有同行人的话，双方口径要一致。','不主动递材料，被问到时再给；答完即止。','收到221(g)（蓝、白、黄单）不是拒签：不要重新递签，按单子补件，然后在CEAC查进度。','被214(b)拒签不能申诉：至少要有一项实质变化（工作、收入、出行记录、家庭）再签；连续被拒2次的，建议间隔6–12个月。','提前2–3个月准备，预留排期和可能的审查时间。'];
- if(PRC()&&r.p>=50)tips.push('ℹ️ 中国护照获得10年B签后，每次赴美前须确认EVUS有效（每2年或换护照后重新登记，30美元）。');
+ if(PRC()&&r.p>=50)tips.push('ℹ️ 中国护照获得10年B签后，赴美前须登记EVUS，每2年或换护照后重新登记；自2025-09-30起每次登记收费30美元。');
  r.info.forEach(x=>tips.push('ℹ️ '+x));
  h+=`<div class="card"><b>面签小贴士</b><ul>`+tips.map(t=>`<li>${t}</li>`).join('')+`</ul></div>`;
- h=h+`<div class="card"><button onclick="sessionStorage.setItem('retry','1');location.reload()">重新测试</button></div>`;document.getElementById('res').innerHTML=h;document.getElementById('quiz').style.display='none';window.scrollTo(0,0)};
+ h=h+`<div class="card"><button onclick="sessionStorage.setItem('retry','1');location.reload()">重新测试</button></div>`;document.getElementById('res').innerHTML=h;document.getElementById('quiz').style.display='none';document.body.classList.remove('quizmode');window.scrollTo(0,0)};
 
 if(sessionStorage.getItem('retry')){sessionStorage.removeItem('retry');const b=document.getElementById('startb');b&&b.click()}
 
